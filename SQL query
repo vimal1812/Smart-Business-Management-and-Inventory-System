@@ -1,0 +1,44 @@
+create database vimal;
+use vimal;
+
+CREATE TABLE Company (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    company_name VARCHAR(255) NOT NULL UNIQUE,
+    cash_balance DECIMAL(10, 2) DEFAULT 1000.00,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Item (
+    item_id INT AUTO_INCREMENT PRIMARY KEY,
+    item_name VARCHAR(255) NOT NULL UNIQUE,
+    user_id INT,
+    qty INT DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES Company(user_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Purchase (
+    purchase_id INT AUTO_INCREMENT PRIMARY KEY,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    username VARCHAR(255),
+    item_id INT,
+    item_name VARCHAR(255),
+    qty INT,CompanySales
+    rate DECIMAL(10, 2),
+    amount DECIMAL(10, 2),
+    FOREIGN KEY (username) REFERENCES Company(username) ON DELETE CASCADE,
+    FOREIGN KEY (item_id) REFERENCES Item(item_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Sales (
+    sales_id INT AUTO_INCREMENT PRIMARY KEY,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    username VARCHAR(255),
+    item_id INT,
+    item_name VARCHAR(255),
+    qty INT,
+    rate DECIMAL(10, 2),
+    amount DECIMAL(10, 2),
+    FOREIGN KEY (username) REFERENCES Company(username) ON DELETE CASCADE,
+    FOREIGN KEY (item_id) REFERENCES Item(item_id) ON DELETE CASCADE
+);
