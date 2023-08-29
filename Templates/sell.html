@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title> Sell </title>
+	<link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+
+<div class="container">
+		<nav>
+			<ul>
+				<li><a href="#" class="logo">
+					<img src="static/logo1.jpg" alt="">
+					<span class="nav-item">Dashboard</span>
+				</a></li>
+				</ul>
+				<div class="navi">
+				  <ul>
+				<li><a href="{{ url_for('Dashboard') }}">
+					<ion-icon name="home"></ion-icon>
+					<span class="nav-item">Home</span>
+				</a></li>
+				<li><a href="{{ url_for('addItem') }}">
+					<span class="icon"><ion-icon name="cart"></ion-icon></span>
+					<span class="nav-item">Add Items</span>
+				</a></li>
+				<li><a href="{{ url_for('purchase_history') }}">
+					<span class="icon"><ion-icon name="newspaper"></ion-icon></span>
+					<span class="nav-item">Purchase History</span>
+				</a></li>
+				<li><a href="{{ url_for('sell_history') }}">
+					<span class="icon"><ion-icon name="clipboard"></ion-icon></span>
+					<span class="nav-item">Sale History</span>
+				</a></li>
+				<li><a href="{{ url_for('logout') }}">
+					<span class="icon"><ion-icon name="exit"></ion-icon></span>
+					<span class="nav-item">Logout</span>
+				</a></li>
+			</ul>
+					</div>
+		</nav>
+		</div>
+
+<section class="main">
+
+
+<h1 class="h1">Add New Purchase Details</h1>
+    <div class="card">
+        <table class="table" >
+				<tr class="sp">
+					<th class="th">QUANTITY</th>
+					<th class="th">RATE</th>
+					<th class="th">PURCHASE</th>
+				</tr>
+        <tr>
+                <td>
+  <form action="{{ url_for('sell', item_name=datas[1]) }}"  method='post'>
+    <label>Item Name:</label>
+    <input type="number" name="qty"  class="input" required>
+          </td>
+            <td>
+    <label>price:</label>
+    <input type="number" name="cost" class="input" required>
+            </td>
+            <td>
+     <button class="action-button td" type="submit">Sell</button>
+            </td>
+        </tr>
+        </table>
+    </div>
+  </form>
+    	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+	</section>
+</body>
+</html>

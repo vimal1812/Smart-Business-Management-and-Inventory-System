@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Add Items</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        .table{
+            padding:5px;
+        }
+        .h2{
+            padding:5px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <nav>
+        <ul>
+            <li><a href="#" class="logo">
+                <img src="static/logo1.jpg" alt="">
+                <span class="nav-item">Dashboard</span>
+            </a></li>
+            </ul>
+            <div class="navi">
+                <ul>
+            <li><a href="{{ url_for('Dashboard') }}">
+                <ion-icon name="home"></ion-icon>
+                <span class="nav-item">Home</span>
+            </a></li>
+            <li><a href="{{ url_for('addItem') }}">
+                <span class="icon"><ion-icon name="cart"></ion-icon></span>
+                <span class="nav-item">Cart</span>
+            </a></li>
+            <li><a href="{{ url_for('purchase_history') }}">
+                <span class="icon"><ion-icon name="newspaper"></ion-icon></span>
+                <span class="nav-item">Purchase History</span>
+            </a></li>
+            <li><a href="{{ url_for('sell_history') }}">
+                <span class="icon"><ion-icon name="clipboard"></ion-icon></span>
+                <span class="nav-item">Sale History</span>
+            </a></li>
+            <li><a href="{{ url_for('logout') }}">
+                <span class="icon"><ion-icon name="exit"></ion-icon></span>
+                <span class="nav-item">Logout</span>
+            </a></li>
+        </ul>
+                    </div>
+    </nav>
+    </div>
+
+<section class="main">
+    <div class="hi content-1">
+			<h1>Company: {{ company_data[0] }}</h1>
+			</div>
+		<div class="hi content-2">
+			<h1>Cash Balance: {{ company_data[1] }}</h1>
+			</div>
+
+    <div class="card">
+        <h2>Add New Item</h2>
+        <form action="{{ url_for('addItem') }}" method="post">
+            <label for="item_name">Item Name:</label>
+            <input type="text" id="item_name" name="item_name" required>
+            <button class="action-button" type="submit">Add Item</button>
+        </form>
+
+        <h2 class="h2">List of Items</h2>
+        <table class="table">
+            <tr class="sp">
+                <th class="th">ITEM ID</th>
+                <th class="th">ITEM NAME</th>
+                <th class="th">STOCK</th>
+                <th class="th">DELETE</th>
+            </tr>
+            {% for data in datas %}
+            <tr class="sp">
+                <td class="td">{{ loop.index }}</td>
+                <td class="td">{{ data[1] }}</td>
+                <td class="td">{{ data[3] }}</td>
+                <td class="td">
+                    <form action="{{ url_for('delete_item', item_name=data[1]) }}" method="post">
+                        <button class="action-button" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</section>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

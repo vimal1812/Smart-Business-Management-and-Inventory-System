@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Sell History</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+
+<div class="container">
+		<nav>
+			<ul>
+				<li><a href="#" class="logo">
+					<img src="static/logo1.jpg" alt="">
+					<span class="nav-item">Dashboard</span>
+				</a></li>
+				</ul>
+				<div class="navi">
+				  <ul>
+				<li><a href="{{ url_for('Dashboard') }}">
+					<ion-icon name="home"></ion-icon>
+					<span class="nav-item">Home</span>
+				</a></li>
+				<li><a href="{{ url_for('addItem') }}">
+					<span class="icon"><ion-icon name="cart"></ion-icon></span>
+					<span class="nav-item">Cart</span>
+				</a></li>
+				<li><a href="{{ url_for('purchase_history') }}">
+					<span class="icon"><ion-icon name="newspaper"></ion-icon></span>
+					<span class="nav-item">Purchase History</span>
+				</a></li>
+				<li><a href="{{ url_for('sell_history') }}">
+					<span class="icon"><ion-icon name="clipboard"></ion-icon></span>
+					<span class="nav-item">Sale History</span>
+				</a></li>
+				<li><a href="{{ url_for('logout') }}">
+					<span class="icon"><ion-icon name="exit"></ion-icon></span>
+					<span class="nav-item">Logout</span>
+				</a></li>
+			</ul>
+					</div>
+		</nav>
+		</div>
+
+<section class="main">
+	<div class="hi content-1">
+			<h1>Company: {{ company_data[0] }}</h1>
+			</div>
+		<div class="hi content-2">
+			<h1>Cash Balance: {{ company_data[1] }}</h1>
+			</div>
+	<h1 class="h1">Sell History</h1>
+	<div class="card">
+    <table class="table" >
+        <tr class="sp">
+			<th class="th">S.No</th>
+            <th class="th">Item Name</th>
+            <th class="th">Quantity</th>
+            <th class="th">Price</th>
+            <th class="th">Amount</th>
+			<th class="th">Sell Time</th>
+        </tr>
+        {% for sell in sell_history %}
+        <tr>
+			<th class="th">{{ loop.index }}</th>
+            <td class="th">{{ sell[4] }}</td>
+            <td class="th">{{ sell[5] }}</td>
+            <td class="th">{{ sell[6] }}</td>
+            <td class="th">{{ sell[7] }}</td>
+			<td class="th">{{ sell[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+	</div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</section>
+</body>
+</html>

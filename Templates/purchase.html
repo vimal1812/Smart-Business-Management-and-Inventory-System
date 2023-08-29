@@ -1,0 +1,244 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title> DashBoard </title>
+	<style>
+		@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700");
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #dfe9f5;
+  overflow-x: hidden;
+}
+
+.container{
+  display: flex;
+}
+
+
+nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100vh;
+  left: 0;
+  background: #fff;
+  width: 280px;
+  overflow: hidden;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center; /* Align logo and text vertically */
+  margin: 10px 0 0 10px;
+}
+
+.logo img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 10px; /* Add spacing between logo and text */
+}
+
+.logo span {
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+ul {
+  list-style: none;
+  padding-left: 15px;
+}
+
+.navi li {
+  display: flex;
+  align-items: center;
+  margin: 35px 0; /* Add spacing between items */
+  margin-left:18px;
+}
+
+.nav-item {
+  margin-left: 20px;
+}
+
+.icons {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px; /* Add spacing between icon and text */
+}
+
+a:hover {
+  background: #eee;
+}
+
+
+
+.main {
+  position: relative;
+  top: 2px;
+  left: 20%;
+  align-items: center;
+  padding: 20px;
+  width: 60%;
+}
+.hi {
+    position: absolute;
+    top: 18px;
+}
+.container-1{
+  display: flex;
+  width: 80%;
+  background-color:black;
+}
+.h1{
+   margin-left: 55%;
+}
+.input{
+    background-color: lightblue;
+    border: 1px solid;
+    height: 40px;
+    margin-top: 15px;
+    text-align: center;
+}
+.content-2{
+  position: relative;
+  top: 2px;
+  left:100%;
+  width:20%
+  background-color:black;
+
+  /*right: 0;
+  margin: 10px 30px;*/
+  color: rgb(110, 109, 109);
+  cursor: pointer;
+}
+
+ .card{
+  width: 75%;
+  height: 80%;
+  margin: 20px;
+  position: fixed;
+  left: 20%;
+  background: #fff;
+  text-align: center;
+   overflow: auto;
+   overflow-x: hidden;
+
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+.styled-th{
+  margin: 10px;
+  text-transform: capitalize;
+}
+.th , .td{
+    /*padding-right: 150px;*/
+    text-align: center;
+    font-size:16px;
+}
+.th{
+    padding-bottom: 10px;
+}
+.table{
+  width: 90%;
+  margin-left: 60px;
+  position: relative;
+  margin-right: 100px;
+  padding: 6px;
+
+
+  text-align: center;
+}
+.card button{
+  background: orangered;
+  color: #fff;
+  padding: 7px 15px;
+  border-radius: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.alert-danger {
+    color: red;
+    margin-left:50%;
+    padding-top:5px;
+}
+
+.alert-success {
+    color: green;
+    left:70%;
+    padding-top:5px;
+}
+
+.fade-out {
+    animation: fadeOut 7s forwards;
+}
+	</style>
+</head>
+<body>
+
+<div class="container">
+		<nav>
+			<ul>
+				<li><a href="#" class="logo">
+					<img src="templates/logo1.jpg" alt="">
+					<span class="nav-item">Dashboard</span>
+				</a></li>
+				</ul>
+				<div class="navi">
+				  <ul>
+				<li><a href="{{ url_for('Dashboard') }}">
+					<ion-icon name="home"></ion-icon>
+					<span class="nav-item">Home</span>
+				</a></li>
+				<li><a href="{{ url_for('addItem') }}">
+					<span class="icon"><ion-icon name="cart"></ion-icon></span>
+					<span class="nav-item">Cart</span>
+				</a></li>
+				<li><a href="{{ url_for('purchase_history') }}">
+					<span class="icon"><ion-icon name="newspaper"></ion-icon></span>
+					<span class="nav-item">Purchase History</span>
+				</a></li>
+				<li><a href="{{ url_for('sell_history') }}">
+					<span class="icon"><ion-icon name="clipboard"></ion-icon></span>
+					<span class="nav-item">Sale History</span>
+				</a></li>
+				<li><a href="{{ url_for('logout') }}">
+					<span class="icon"><ion-icon name="exit"></ion-icon></span>
+					<span class="nav-item">Logout</span>
+				</a></li>
+			</ul>
+					</div>
+		</nav>
+		</div>
+<section class="main">
+<h1>Purchase</h1>
+    <div class="card">
+        <form action="{{ url_for('purchase', item_name=datas[1]) }}"  method='post'>
+            <label for="qty">Item Name:</label>
+            <input type="number" id="qty" name="qty" required>
+			<label for="cost">Item Name:</label>
+            <input type="number" id="cost" name="cost" required>
+            <button class="action-button" type="submit">Add Item</button>
+        </form>
+		</div>
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+	</section>
+</body>
+</html>
+
+
